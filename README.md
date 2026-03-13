@@ -1,3 +1,18 @@
+## Python SDK
+
+AgentShield now includes a Python SDK for developers.
+
+Example usage:
+
+```python
+from agentshield import scan
+
+result = scan("https://example.com")
+print(result.result)
+print(result.risk_score)
+print(result.summary)
+
+
 # agentshield
 
 Python SDK for the [AgentShield](https://github.com/your-org/agentshield) URL security scanning API.
