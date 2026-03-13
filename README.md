@@ -1,3 +1,13 @@
+## Interactive Demo
+
+Try the live scanner:
+https://c5c30dcf-d653-4a74-b39d-7dd79bc6b0c8-00-3lc86x3cqnvn8.worf.replit.dev/api/demo
+
+## API Docs
+
+Interactive docs:
+https://c5c30dcf-d653-4a74-b39d-7dd79bc6b0c8-00-3lc86x3cqnvn8.worf.replit.dev/api/docs
+
 ## Python SDK
 
 AgentShield now includes a Python SDK for developers.
