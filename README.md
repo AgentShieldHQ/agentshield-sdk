@@ -1,7 +1,7 @@
 ## Interactive Demo
 
 Try the live scanner:
-https://c5c30dcf-d653-4a74-b39d-7dd79bc6b0c8-00-3lc86x3cqnvn8.worf.replit.dev/api/demo
+[https://c5c30dcf-d653-4a74-b39d-7dd79bc6b0c8-00-3lc86x3cqnvn8.worf.replit.dev/api/demo](https://python-base-1.replit.app/api/demo)
 
 ## API Docs
 
