@@ -1,4 +1,15 @@
 
+## 🧠 Why This Matters
+
+Even trusted APIs can return unsafe or manipulative data.
+
+AgentShield protects AI agents at two critical points:
+
+- **Pre-call**: Scan tools and endpoints for risk
+- **Post-call**: Inspect responses for prompt injection and malicious instructions
+
+This ensures agents act only on safe, verified inputs — not manipulated outputs.
+
 ## 🚀 Status
 
 AgentShield Prototype + Live Demo + SDK = complete
