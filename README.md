@@ -1,3 +1,11 @@
+
+## 🚀 Status
+
+AgentShield Prototype + Live Demo + SDK = complete
+
+Live Demo:
+https://python-base-1.replit.app/api/demo
+
 ## Interactive Demo
 
 Try the live scanner:
