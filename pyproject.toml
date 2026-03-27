@@ -5,11 +5,19 @@ build-backend = "hatchling.build"
 [project]
 name = "agentshield"
 version = "0.1.0"
-description = "Python SDK for the AgentShield URL security scanning API"
+description = "Python SDK for the AgentShield AI Agent Security Layer"
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
-keywords = ["security", "url-scanner", "malware-detection", "api-client"]
+keywords = [
+    "ai-security",
+    "agent-security",
+    "prompt-injection",
+    "api-security",
+    "runtime-security",
+    "response-inspection",
+    "sdk",
+]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -20,6 +28,7 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Topic :: Security",
+    "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Internet :: WWW/HTTP",
 ]
 dependencies = [
@@ -29,12 +38,12 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest>=7.0",
-    "responses>=0.23",   # mock HTTP for tests
+    "responses>=0.23",
 ]
 
 [project.urls]
-Homepage = "https://github.com/your-org/agentshield"
-Issues   = "https://github.com/your-org/agentshield/issues"
+Homepage = "https://github.com/AgentShieldHQ/agentshield-sdk"
+Issues = "https://github.com/AgentShieldHQ/agentshield-sdk/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["agentshield"]
