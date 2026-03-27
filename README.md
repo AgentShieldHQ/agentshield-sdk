@@ -1,127 +1,65 @@
+# AgentShield
 
-AgentShield Phase 2 complete: pre-call scanning + post-call response inspection
+**Security layer for AI agents — before and after every tool call.**
+
+AgentShield protects AI agents across the full tool lifecycle:
+
+- **Before execution** — scan APIs and tools for risk  
+- **After execution** — inspect responses for prompt injection, sensitive data, and unsafe behavior  
+
+---
 
 ## 🧠 Why This Matters
 
-Even trusted APIs can return unsafe or manipulative data.
+AI agents increasingly rely on external tools and APIs.
 
-AgentShield protects AI agents at two critical points:
+Even trusted endpoints can return:
+- prompt injection attacks  
+- unsafe instructions  
+- sensitive data leaks  
 
-- **Pre-call**: Scan tools and endpoints for risk
-- **Post-call**: Inspect responses for prompt injection and malicious instructions
+AgentShield ensures agents act only on **safe, verified inputs and outputs** — not manipulated responses.
 
-This ensures agents act only on safe, verified inputs — not manipulated outputs.
+---
 
-## 🚀 Status
+## ⚙️ How It Works
 
-AgentShield Prototype + Live Demo + SDK = complete
+1. Submit a tool or API endpoint  
+2. AgentShield scans for risk before execution  
+3. AgentShield inspects the response after execution  
+4. Receive a clear verdict: **SAFE**, **SUSPICIOUS**, or **MALICIOUS**
 
-Live Demo:
-https://python-base-1.replit.app/api/demo
+---
 
-## Interactive Demo
+## 🚀 Current Status
 
-Try the live scanner:
-[https://c5c30dcf-d653-4a74-b39d-7dd79bc6b0c8-00-3lc86x3cqnvn8.worf.replit.dev/api/demo](https://python-base-1.replit.app/api/demo)
+**Phase 2 Complete**
 
-## API Docs
+- ✅ Pre-call endpoint scanning  
+- ✅ Post-call response inspection  
+- ✅ Unified risk scoring + escalation  
+- ✅ Interactive demo  
+- ✅ Public API  
+- ✅ Python SDK  
 
-Interactive docs:
-https://c5c30dcf-d653-4a74-b39d-7dd79bc6b0c8-00-3lc86x3cqnvn8.worf.replit.dev/api/docs
+---
 
-## Python SDK
+## 🔍 Live Demo
 
-AgentShield now includes a Python SDK for developers.
+Try the interactive scanner:
 
-Example usage:
+👉 https://python-base-1.replit.app/api/demo
 
-```python
-from agentshield import scan
+---
 
-result = scan("https://example.com")
-print(result.result)
-print(result.risk_score)
-print(result.summary)
+## 📘 API Docs
 
+Interactive API documentation:
 
-# agentshield
+👉 https://python-base-1.replit.app/api/docs
 
-Python SDK for the [AgentShield](https://github.com/your-org/agentshield) URL security scanning API.
+---
 
-## Install
+## 🔌 API Usage
 
-```bash
-pip install agentshield
-```
-
-## Quick start
-
-```python
-from agentshield import scan
-
-result = scan("https://example.com")
-print(result)
-```
-
-Output:
-
-```
-AgentShield Scan
-  URL        : https://example.com
-  Result     : SAFE
-  Risk score : [████████░░░░░░░░░░░░] 40/100
-  Summary    : example.com scored 40/100 and appears safe. ...
-```
-
-## Configuration
-
-By default the SDK points to the hosted demo server. Override with an env var or keyword argument:
-
-```bash
-export AGENTSHIELD_BASE_URL=https://your-server.com
-```
-
-```python
-result = scan("https://example.com", base_url="https://your-server.com")
-```
-
-## Reusable client
-
-```python
-from agentshield import AgentShieldClient
-
-with AgentShieldClient(base_url="https://your-server.com") as client:
-    for url in ["https://github.com", "https://paypal-fake-login.tk"]:
-        r = client.scan(url)
-        print(r.result, r.risk_score, url)
-```
-
-## Return value
-
-`scan()` returns a `ScanResult` dataclass:
-
-| Field        | Type  | Description                          |
-|--------------|-------|--------------------------------------|
-| `url`        | `str` | The URL that was scanned             |
-| `result`     | `str` | `"SAFE"`, `"SUSPICIOUS"`, or `"MALICIOUS"` |
-| `risk_score` | `int` | 0–100                                |
-| `summary`    | `str` | Plain-English explanation            |
-
-Helper methods: `.is_safe()`, `.is_suspicious()`, `.is_malicious()`
-
-## Error handling
-
-```python
-from agentshield import scan, ConnectionError, APIError
-
-try:
-    result = scan("https://example.com")
-except ConnectionError as e:
-    print("Server unreachable:", e)
-except APIError as e:
-    print(f"API error {e.status_code}:", e)
-```
-
-## License
-
-MIT
+### Endpoint
