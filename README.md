@@ -1,4 +1,6 @@
 
+AgentShield Phase 2 complete: pre-call scanning + post-call response inspection
+
 ## 🧠 Why This Matters
 
 Even trusted APIs can return unsafe or manipulative data.
