@@ -1,110 +1,105 @@
-# AgentShield
+# ActionLedger
 
-**Security layer for AI agents — before and after every tool call.**
+**Runtime action trust for AI agents.**
 
-AgentShield protects AI agents across the full tool lifecycle:
+ActionLedger scores, explains, and records whether an AI agent should trust a tool, response, peer, memory, or destination before acting.
 
-- **Before execution** — scan APIs and tools for risk  
-- **After execution** — inspect responses for prompt injection, sensitive data, and unsafe behavior  
+Every agent action gets a clear verdict, confidence level, recommended action, and audit-ready proof record.
 
----
-
-## 🧠 Why This Matters
-
-AI agents increasingly rely on external tools and APIs.
-
-Even trusted endpoints can return:
-- prompt injection attacks  
-- unsafe instructions  
-- sensitive data leaks  
-
-AgentShield ensures agents act only on **safe, verified inputs and outputs** — not manipulated responses.
+> **Note:** ActionLedger is the current working name for the project. Earlier builds were developed under the AgentShieldHQ name.
 
 ---
 
-## ⚙️ How It Works
+## Why This Matters
 
-1. Submit a tool or API endpoint  
-2. AgentShield scans for risk before execution  
-3. AgentShield inspects the response after execution  
-4. Receive a clear verdict: **SAFE**, **SUSPICIOUS**, or **MALICIOUS**
+AI agents are no longer just generating text.
 
----
+They are starting to:
 
-## 🔍 Scan Modes
+- call tools and APIs
+- fetch URLs
+- process files
+- inspect responses
+- update memory
+- delegate work to other agents
+- act across external systems
 
-AgentShield provides two layers of protection for AI agents, securing both the tools they call and the data they receive.
+Every one of those actions can introduce risk.
 
-### 1. Pre-call Scanning (Tool Evaluation)
+A tool may be malicious.  
+A response may contain prompt injection.  
+A destination may be unsafe.  
+A peer agent may be untrusted.  
+A shared memory item may be stale, contradictory, or sensitive.
 
-Scans a URL or API endpoint before execution:
+ActionLedger provides a runtime trust layer that helps agents decide:
 
-- Domain age analysis  
-- Malicious domain detection  
-- Security header inspection  
-
-**Use case:**  
-Determine whether a tool is safe for an agent to call.
-
----
-
-### 2. Post-call Inspection (Response Analysis)
-
-Analyzes returned content from APIs or tools:
-
-- Prompt injection detection  
-- Sensitive data exposure (API keys, tokens, credentials)  
-- Suspicious behavior (exfiltration, external calls, command execution)  
-
-**Use case:**  
-Ensure agents do not act on manipulated or unsafe outputs.
+> Should this action be allowed, reviewed, or blocked?
 
 ---
 
-### ⚙️ Behavior
+## Core Idea
 
-- If `response_text` is **not provided**  
-  → Only pre-call scanning is performed  
+**Before the action: score it.**  
+**After the action: prove it.**
 
-- If `response_text` **is provided**  
-  → Full lifecycle protection is applied (pre + post call)  
+ActionLedger evaluates agent interactions before and after execution, then returns:
 
-This mirrors real-world agent workflows, where both the tool and its output must be trusted.
-
----
-
-## 🚀 Current Status
-
-**Phase 2 Complete**
-
-- ✅ Pre-call endpoint scanning  
-- ✅ Post-call response inspection  
-- ✅ Unified risk scoring + escalation  
-- ✅ Interactive demo  
-- ✅ Public API  
-- ✅ Python SDK  
+- verdict: `SAFE`, `SUSPICIOUS`, or `MALICIOUS`
+- risk score: `0–100`
+- verdict confidence
+- recommended action: `ALLOW`, `REVIEW`, or `BLOCK`
+- plain-English explanation
+- risk factors
+- optional proof / audit record
 
 ---
 
-## 🔍 Live Demo
+## What ActionLedger Protects
 
-Try the interactive scanner:
+ActionLedger is designed to evaluate trust across the full agent workflow:
 
-👉 https://python-base-1.replit.app/api/demo
+| Area | What it checks |
+|---|---|
+| Tools & APIs | Risky URLs, suspicious domains, unsafe endpoints |
+| Responses | Prompt injection, exploit patterns, leaked secrets, malicious instructions |
+| Destinations | Redirects, non-HTTPS targets, suspicious outbound paths |
+| Peer agents | Trust level, delegation risk, unknown or blocked peers |
+| Memory | Sensitive data, stale state, conflicting information |
+| Shared workspaces | Decisions, definitions, tasks, failed attempts, and handoffs |
 
 ---
 
-## 📘 API Docs
+## Scan Modes
 
-Interactive API documentation:
+ActionLedger supports two scan modes:
 
-👉 https://python-base-1.replit.app/api/docs
+### FAST Mode
+
+Designed for real-time agent chains.
+
+- Default mode
+- Low-latency decision path
+- No blocking network enrichment
+- Best for runtime pre-call decisions
+
+### DEEP Mode
+
+Designed for enrichment and deeper inspection.
+
+- Slower than FAST mode
+- Adds additional checks where available
+- Useful for borderline or high-risk cases
 
 ---
 
-## 🔌 API Usage
+## Main API Actions
 
-### Endpoint
+### 1. Pre-call Scan
+
+Scan a URL, API, or tool before an agent calls it.
 
 ```bash
-POST /api/scan_tool
+curl -X POST https://python-base-1.replit.app/api/scan_tool \
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://google.com"}'
